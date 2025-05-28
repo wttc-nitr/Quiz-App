@@ -1,12 +1,13 @@
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Questions from "../questions";
 import Card from "../components/Card";
+import CustomButton from "../components/CustomButton";
 
 export default function QuizScreen() {
-  const question = Questions[100];
+  const question = Questions[1];
 
   return (
     <SafeAreaView style={styles.page}>
@@ -24,23 +25,21 @@ export default function QuizScreen() {
               <Text style={styles.time}>20 sec</Text>
             </>
           ) : (
-            <Card title="Well done!!" />
+            <Card title="Well done!!">
+              <Text>Correct answers: 3/5</Text>
+              <Text>Best score: 9</Text>
+            </Card>
           )}
         </View>
 
         {/* Footer */}
-        <Pressable
-          style={styles.button}
-          onPress={() => console.warn("pressed")}
-        >
-          <Text style={styles.buttonText}>Next</Text>
-          <FontAwesome6
-            name="arrow-right-long"
-            size={16}
-            color="white"
-            style={styles.buttonIcon}
-          />
-        </Pressable>
+        <CustomButton
+          title="Done"
+          rightIcon={
+            <FontAwesome6 name="arrow-right-long" size={16} color="white" />
+          }
+          onPress={() => console.warn("custom button pressed")}
+        />
       </View>
     </SafeAreaView>
   );
