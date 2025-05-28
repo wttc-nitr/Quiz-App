@@ -1,5 +1,6 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import AnswerOption from "./AnswerOption";
+import Card from "./Card";
 
 type QuestionCard = {
   question: {
@@ -18,8 +19,7 @@ export default function QuestionCard({
   };
 
   return (
-    <View style={styles.questionCard}>
-      <Text style={styles.question}>{title}</Text>
+    <Card title={title}>
       <View style={{ gap: 10 }}>
         {options.map((option) => (
           <AnswerOption
@@ -30,7 +30,7 @@ export default function QuestionCard({
           />
         ))}
       </View>
-    </View>
+    </Card>
   );
 }
 
