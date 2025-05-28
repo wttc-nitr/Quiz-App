@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import AnswerOption from "./AnswerOption";
 import Card from "./Card";
+import { useState } from "react";
 
 type QuestionCard = {
   question: {
@@ -13,9 +14,9 @@ type QuestionCard = {
 export default function QuestionCard({
   question: { title, options },
 }: QuestionCard) {
-  const selectedOption = options[0];
+  const [selectedOption, setSelectedOption] = useState<string>();
   const onOptionSelected = (option: string) => {
-    console.warn("selected", option);
+    setSelectedOption(option);
   };
 
   return (
