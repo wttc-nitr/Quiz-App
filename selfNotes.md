@@ -25,7 +25,7 @@ type CustomButton = {
   // others
 } & ComponentProps<typeof Pressable>;
 
-function CustomButton ({...pressableProps}: CustomButton) {
+function CustomButton ({others, ...pressableProps}: CustomButton) {
   return (
     <Pressable
       {...pressableProps}
@@ -36,3 +36,19 @@ function CustomButton ({...pressableProps}: CustomButton) {
 ````
 
 - `ComponentProps<typeof Component>` -> to get props of a component
+
+# Context
+- we use `value={{}}` prop in `React.Context.Provider` because we want to send context data in one value:
+```typescript
+❌ <QuizContext.Provider>  // Missing value prop
+❌ <QuizContext.Provider questionIndex onNext>  // Multiple props
+```
+- if you want to isolate context data, just create different contexts.
+
+- `useQuizContext` custom hook to give access to context data (define in Provider wrapper component)
+- this way u don't have to import `useContext` & the context -> a single import will do the job.
+```typescript
+export const useQuizContext = () => useContext(QuizContext);
+```
+
+- keep the logic (related to the data) near to the data. So, components become responsible for displaying the UI only.

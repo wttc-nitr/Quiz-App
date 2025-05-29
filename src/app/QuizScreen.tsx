@@ -2,18 +2,12 @@ import { Text, StyleSheet, View } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import Questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
-import { useState } from "react";
+import { useQuizContext } from "../providers/QuizProvider";
 
 export default function QuizScreen() {
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const question = Questions[questionIndex];
-
-  const onNext = () => {
-    setQuestionIndex((index) => index + 1);
-  };
+  const { question, onNext } = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>

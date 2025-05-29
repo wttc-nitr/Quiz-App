@@ -1,14 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import AnswerOption from "./AnswerOption";
 import Card from "./Card";
 import { useState } from "react";
+import type { Question } from "../types";
 
 type QuestionCard = {
-  question: {
-    title: string;
-    options: string[];
-    correctAnswer: string;
-  };
+  question: Question;
 };
 
 export default function QuestionCard({
@@ -34,28 +31,3 @@ export default function QuestionCard({
     </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  questionCard: {
-    backgroundColor: "white",
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-    borderRadius: 20,
-    gap: 20,
-
-    // shadows
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5, // for android
-  },
-  question: {
-    fontSize: 24,
-    fontWeight: "500",
-  },
-});
