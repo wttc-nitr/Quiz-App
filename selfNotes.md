@@ -64,3 +64,17 @@ const setter2: Setter = (newOption) => console.log(newOption); // correct implem
 
 const setter3: Setter = (newOption, b) => {} // error
 ```
+# useEffect
+```javascript
+useEffect(() => {
+  //setup function
+
+  return () => {
+    // cleanup function
+  }
+}, [deps])
+```
+- when useEffect comes into action:
+    - when component mounts, setup function runs
+    - then, if deps change, first cleanup function (if provided) runs (with old values), then setup function with new values.
+    - on unmount, cleanup function runs
