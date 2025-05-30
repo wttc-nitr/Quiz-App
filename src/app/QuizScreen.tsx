@@ -7,14 +7,19 @@ import CustomButton from "../components/CustomButton";
 import { useQuizContext } from "../providers/QuizProvider";
 
 export default function QuizScreen() {
-  const { question, onNext } = useQuizContext();
+  const { question, onNext, score, totalQuestions, questionIndex } =
+    useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
         {/* Header */}
         <View>
-          <Text style={styles.title}>Question 1/5</Text>
+          <Text style={styles.title}>
+            {questionIndex >= totalQuestions
+              ? "Result:"
+              : `Question ${questionIndex + 1}/${totalQuestions}`}
+          </Text>
         </View>
 
         {/* Body */}
@@ -26,7 +31,9 @@ export default function QuizScreen() {
             </>
           ) : (
             <Card title="Well done!!">
-              <Text>Correct answers: 3/5</Text>
+              <Text>
+                Correct answers: {score}/{totalQuestions}
+              </Text>
               <Text>Best score: 9</Text>
             </Card>
           )}
