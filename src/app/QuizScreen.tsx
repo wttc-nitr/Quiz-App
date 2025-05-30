@@ -5,28 +5,26 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { useQuizContext } from "../providers/QuizProvider";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useTimer from "../hooks/useTimer";
 
 export default function QuizScreen() {
   const { question, onNext, score, totalQuestions, questionIndex, bestScore } =
     useQuizContext();
 
-  const [timer, setTimer] = useState(20);
+  const { time, startTimer, clearTimer } = useTimer(20);
 
   useEffect(() => {
-    setTimer(20);
-    const interval = setInterval(() => {
-      setTimer((x) => x - 1);
-    }, 1000);
+    startTimer();
 
     return () => {
-      clearInterval(interval);
+      clearTimer();
     };
   }, [question]);
 
   useEffect(() => {
-    if (timer <= 0 && question) onNext();
-  }, [timer]);
+    if (time <= 0 && question) onNext();
+  }, [time]);
 
   return (
     <SafeAreaView style={styles.page}>
@@ -45,7 +43,7 @@ export default function QuizScreen() {
           {question ? (
             <>
               <QuestionCard question={question} />
-              <Text style={styles.time}>{timer} sec</Text>
+              <Text style={styles.time}>{time} sec</Text>
             </>
           ) : (
             <Card title="Well done!!">
