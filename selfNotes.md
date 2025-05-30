@@ -52,3 +52,15 @@ export const useQuizContext = () => useContext(QuizContext);
 ```
 
 - keep the logic (related to the data) near to the data. So, components become responsible for displaying the UI only.
+
+#
+- TypeScript allows fewer parameters than declared in the function type (but not more).
+```typescript
+type Setter = (newOption: string) => void;
+
+const setter1: Setter = () => {}; // No error!
+
+const setter2: Setter = (newOption) => console.log(newOption); // correct implementation
+
+const setter3: Setter = (newOption, b) => {} // error
+```
