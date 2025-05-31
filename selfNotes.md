@@ -78,3 +78,6 @@ useEffect(() => {
     - when component mounts, setup function runs
     - then, if deps change, first cleanup function (if provided) runs (with old values), then setup function with new values.
     - on unmount, cleanup function runs
+
+#
+- `Async Storage` package -> persist data to phone storage.
