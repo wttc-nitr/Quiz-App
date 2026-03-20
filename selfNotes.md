@@ -74,10 +74,16 @@ useEffect(() => {
   }
 }, [deps])
 ```
-- when useEffect comes into action:
+- when `useEffect` comes into action:
     - when component mounts, setup function runs
     - then, if deps change, first cleanup function (if provided) runs (with old values), then setup function with new values.
     - on unmount, cleanup function runs
 
+- if async function runs too long inside `useEffect`:
+    1. `isMounted` then set state
+    2. `abortController`
+    3. `web-worker`
+
 #
 - `Async Storage` package -> persist data to phone storage.
+- `StyleSheet.absoluteFill` -> `position: 'absolute', top: 0, bottom: 0, right: 0, left: 0` -> fills the screen
